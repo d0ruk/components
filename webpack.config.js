@@ -1,4 +1,5 @@
 const { resolve } = require("path");
+const { name } = require("./package.json");
 const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -17,7 +18,9 @@ module.exports = (env={}) => {
     entry,
     output: {
       filename: "[name].js",
-      path: resolve(__dirname, "build")
+      path: resolve(__dirname, "build"),
+      library: name,
+      libraryTarget: "commonjs"
     },
     module: {
       rules: [
