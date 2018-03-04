@@ -1,0 +1,18 @@
+<div style={{ display: "flex" }}>
+  <Button
+    accent="success"
+    onClick={({ target}) => console.log(target)}
+  >
+    <h1>yay!</h1>
+  </Button>
+  <Button
+    accent="warning"
+  >
+    <h1>oops!</h1>
+  </Button>
+  <Button
+    accent="error"
+  >
+    <h1>doh!!</h1>
+  </Button>
+</div>
