@@ -16,7 +16,7 @@ module.exports = (env={}) => {
     mode: "development",
     entry,
     output: {
-      filename: "[name].[hash:7].js",
+      filename: "[name].js",
       path: resolve(__dirname, "build")
     },
     module: {
