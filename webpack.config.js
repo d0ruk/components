@@ -20,7 +20,7 @@ module.exports = (env={}) => {
       filename: "[name].js",
       path: resolve(__dirname, "build"),
       library: name,
-      libraryTarget: "commonjs"
+      libraryTarget: "commonjs2"
     },
     module: {
       rules: [
