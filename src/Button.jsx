@@ -1,7 +1,7 @@
-import React from "react"
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 
-import { string, bool, node } from "prop-types"
+import { string, node } from "prop-types";
 
 const Component = styled.button`
   width: max-content;

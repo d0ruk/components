@@ -41,7 +41,7 @@ const examples = [
   {
     name: "Button",
     src: require("raw-loader!./examples/button"),
-    scope: { React, Button },
+    scope: { React, Button, Loader },
   },
 ];
 
