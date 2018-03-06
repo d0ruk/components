@@ -1,17 +1,19 @@
 <div style={{ display: "flex" }}>
   <Button
     accent="success"
-    onClick={({ target}) => console.log(target)}
+    onClick={({ target }) => console.log(target)}
   >
     <h1>yay!</h1>
   </Button>
   <Button
     accent="warning"
+    className="some-class"
   >
     <h1>oops!</h1>
   </Button>
   <Button
     accent="error"
+    disabled
   >
     <h1>doh!!</h1>
   </Button>

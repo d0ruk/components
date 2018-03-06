@@ -45,7 +45,6 @@ const Button = ({ htmlType, children, ...rest }) => {
 Button.displayName = "Button";
 Button.propTypes = {
   htmlType: string,
-  disabled: bool,
   children: node
 };
 

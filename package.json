@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/d0ruk/components#readme",
   "dependencies": {
+    "css.escape": "^1.5.1",
     "polished": "^1.9.2",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",

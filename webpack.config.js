@@ -7,21 +7,23 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = (env={}) => {
   const isProd = env.prod;
   const entry = { index: "./src/index" };
+  const output =  {
+    filename: "[name].js",
+    path: resolve(__dirname, "build")
+  };
 
   if (!isProd) {
     entry["play"] = "./playground";
+  } else {
+    output["library"] = name,
+    output["libraryTarget"] = "commonjs2"
   }
 
   return {
     context: __dirname,
     mode: "development",
     entry,
-    output: {
-      filename: "[name].js",
-      path: resolve(__dirname, "build"),
-      library: name,
-      libraryTarget: "commonjs2"
-    },
+    output,
     module: {
       rules: [
         {
@@ -53,11 +55,15 @@ module.exports = (env={}) => {
       : [new HtmlWebpackPlugin({
         template: "./index.html",
         title: "components playground",
+        chunks: ["play"]
       }),
       new webpack.HotModuleReplacementPlugin()]
     ),
     resolve: {
       extensions: [".js", ".json", ".jsx"],
+      alias: {
+        "~": resolve(__dirname, "src")
+      }
     },
     devtool: isProd ? "hidden-source-map" : "source-map",
     devServer: {

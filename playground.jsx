@@ -1,10 +1,10 @@
-import React, { Fragment } from "react"
-import Playground from "component-playground"
-import ReactDOM from "react-dom"
-import styled, { injectGlobal } from "styled-components"
-import { normalize, lighten, complement } from "polished"
+import React, { Fragment } from "react";
+import Playground from "component-playground";
+import ReactDOM from "react-dom";
+import styled, { injectGlobal } from "styled-components";
+import { normalize, lighten, complement } from "polished";
 
-import { Button } from "./src"
+import { Button, Loader } from "./src";
 
 injectGlobal`
   ${normalize()}
@@ -22,8 +22,9 @@ injectGlobal`
     --warning-font_color: ${lighten(0.5, complement("rgb(255, 174, 0)"))};
   }
 
-  body {
-    background: #efefef;
+  body, html {
+    width: 100%;
+    height: 100%;
   }
 
   #root {
@@ -33,59 +34,57 @@ injectGlobal`
 
 const examples = [
   {
+    name: "Loader",
+    src: require("raw-loader!./examples/loader"),
+    scope: { React, Loader },
+  },
+  {
     name: "Button",
     src: require("raw-loader!./examples/button"),
-    scope: { React, Button }
-  }
-]
+    scope: { React, Button },
+  },
+];
 
 class Index extends React.Component {
   render() {
-    return (
-      <Fragment>
-        {examples.map(makePlayground)}
-      </Fragment>
-    );
+    return <Fragment>{examples.map(makePlayground)}</Fragment>;
   }
 }
 
-ReactDOM.render(<Index/>, document.getElementById("root"));
+ReactDOM.render(<Index />, document.getElementById("root"));
 
 if (module.hot) module.hot.accept();
 
-function makePlayground({ src, scope, name }, idx) {
+function makePlayground({ src, scope, name }) {
   const Wrapper = styled.div`
-  
-  .playground {
+    .playground {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      align-items: center;
+      justify-items: space-between;
       margin: 10px auto;
-      border-radius: 5px;
       overflow: hidden;
     }
-    
+
     .CodeMirror {
       padding: 10px;
     }
 
     .playgroundCode {
     }
-    
+
     .playgroundPreview {
-      margin: 1rem auto auto auto;
-      box-shadow: 0px 0px 5px rgba(0,0,0,0.25);
+      margin-left: auto;
+      margin-right: 1rem;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
     }
   `;
 
   return (
-    <Wrapper>
+    <Wrapper key={`${name}`}>
       <h1>{name}</h1>
-      <Playground
-        key={`example_${idx}`}
-        codeText={src}
-        scope={scope}
-      />
-      <hr/>
+      <Playground codeText={src} scope={scope} />
+      <hr />
     </Wrapper>
   );
 }

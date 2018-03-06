@@ -1,0 +1,12 @@
+<div>
+  <Loader fullscree />
+  <Loader size="xs" fill="yellow" stroke="blue" />
+  <Loader size="xl" fill="rebeccapurple" />
+  <Loader fullscree n={{ bg: "green" }} />
+  <Loader
+    fill="green"
+    stroke="red"
+    size="md"
+    fullscree n={{ bg: { color: "blue", tint: 3 }}}
+  />
+</div>
