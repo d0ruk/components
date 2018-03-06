@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
-
 import React from "react";
 import styled from "styled-components";
+import { oneOfType, string, shape, number } from "prop-types";
 
 import { getScale, getBgColor } from "~/util";
 
@@ -22,7 +21,7 @@ const Wrapper = styled.div`
   &:before {
     content: "";
     position: fixed;
-    background-color: ${({ bg = "mistyrose" }) => `${getBgColor(bg)}`};
+    background-color: ${({ bg }) => `${getBgColor(bg)}`};
     display: block;
     top: 0;
     left: 0;
@@ -68,8 +67,12 @@ const Loader = ({ fullscreen, ...rest }) => {
   );
 
   if (fullscreen) {
+    const background = typeof fullscreen === "string"
+      ? fullscreen
+      : fullscreen.bg;
+
     return (
-      <Wrapper bg={fullscreen.bg}>
+      <Wrapper bg={background}>
         {getLoader({ ...rest, size: rest.size || "xl" })}
       </Wrapper>
     );
@@ -78,6 +81,14 @@ const Loader = ({ fullscreen, ...rest }) => {
   return getLoader({ ...rest });
 };
 
+Loader.propTypes = {
+  fill: string,
+  stroke: string,
+  size: string,
+  fullscreen : oneOfType([
+    string,
+    shape({ bg: shape({ color: string, tint: number })})
+  ]),
+}
 Loader.displayName = "Loader";
-
 export default Loader;
