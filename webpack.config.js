@@ -21,7 +21,7 @@ module.exports = (env={}) => {
 
   return {
     context: __dirname,
-    mode: "development",
+    mode: isProd ? "production" : "development",
     entry,
     output,
     module: {
