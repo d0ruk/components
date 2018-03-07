@@ -1,10 +1,12 @@
+/* eslint-disable react/prop-types */
+
 import React, { Fragment } from "react";
 import Playground from "component-playground";
 import ReactDOM from "react-dom";
 import styled, { injectGlobal } from "styled-components";
 import { normalize, lighten, complement } from "polished";
 
-import { Button, Loader } from "./src";
+import * as components from "./src";
 
 injectGlobal`
   ${normalize()}
@@ -32,16 +34,17 @@ injectGlobal`
   }
 `;
 
+const scope = { React, ...components }
 const examples = [
   {
     name: "Loader",
     src: require("raw-loader!./examples/loader"),
-    scope: { React, Loader },
+    scope,
   },
   {
     name: "Button",
     src: require("raw-loader!./examples/button"),
-    scope: { React, Button, Loader },
+    scope,
   },
 ];
 
