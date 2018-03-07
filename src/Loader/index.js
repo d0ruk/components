@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { oneOfType, string, shape, number } from "prop-types";
+import { oneOf, oneOfType, string, shape, number } from "prop-types";
 
-import { getScale, getBgColor } from "~/util";
+import { SIZES, getScale, getBgColor } from "~/util";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -84,7 +84,7 @@ const Loader = ({ fullscreen, ...rest }) => {
 Loader.propTypes = {
   fill: string,
   stroke: string,
-  size: string,
+  size: oneOf(SIZES),
   fullscreen : oneOfType([
     string,
     shape({ bg: shape({ color: string, tint: number })})

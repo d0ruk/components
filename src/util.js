@@ -1,12 +1,12 @@
 import { modularScale, parseToRgb, transparentize } from "polished";
 
-const sizes = ["xs", "sm", "md", "lg", "xl"];
+export const SIZES = ["xs", "sm", "md", "lg", "xl"];
 
 export const getScale = (size="sm") => {
   const BASE = "1px";
-  if (!sizes.includes(size)) return BASE;
+  if (!SIZES.includes(size)) return BASE;
 
-  const idx = sizes.indexOf(size);
+  const idx = SIZES.indexOf(size);
   const step = idx === -1 ? 1 : idx*1.6 + 1;
   return modularScale(step, BASE);
 }
