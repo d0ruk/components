@@ -4,7 +4,7 @@ export const SIZES = ["xs", "sm", "md", "lg", "xl"];
 
 export const getScale = (size="sm") => {
   const BASE = "1px";
-  if (!SIZES.includes(size)) return BASE;
+  if (!SIZES.includes(size)) size = "sm";
 
   const idx = SIZES.indexOf(size);
   const step = idx === -1 ? 1 : idx*1.6 + 1;
