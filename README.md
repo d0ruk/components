@@ -14,6 +14,7 @@ export const aLoader = () => (
 export const overlayedLoader = () => (
   React.createPortal(
     <Loader
+      variant="rect5"
       fullscreen={{
         bg: { color: "rgba(0,0,0,.5)", tint: 9 }
       }}
@@ -29,3 +30,19 @@ export const yetAnotherLoader = () => (
   />
 );
 ```
+
+## Button
+
+prop | type | description | default
+---|---|:-:|---|
+accent | string | one of; primary, secondary, success, error, warning | primary
+
+## Loader
+
+prop | type | description | default
+---|---|:-:|--:|
+fullscreen | string\|{color,tint} | overlay loader over \<body\>| {color:"mistyrose",tint:3}
+fill|string|fill of the SVG elements| -
+stroke|string|stroke of the SVG elements| -
+size|string|one of; xs, sm, md, lg, xl|sm
+variant|string|one of: spin1, spin2, spin3, rect1, rect2, rect3, rect4, rect5|spin1

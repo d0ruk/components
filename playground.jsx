@@ -35,18 +35,15 @@ injectGlobal`
 `;
 
 const scope = { React, ...components }
-const examples = [
-  {
-    name: "Loader",
-    src: require("raw-loader!./examples/loader"),
-    scope,
-  },
-  {
-    name: "Button",
-    src: require("raw-loader!./examples/button"),
-    scope,
-  },
-];
+const examples = Object.entries(components)
+  .map(([ name, module ]) => {
+    return {
+      name,
+      // docClass: module,
+      src: require(`raw-loader!./examples/${name}`),
+      scope,
+    }
+  });
 
 class Index extends React.Component {
   render() {
@@ -86,7 +83,11 @@ function makePlayground({ src, scope, name }) {
   return (
     <Wrapper key={`${name}`}>
       <h1>{name}</h1>
-      <Playground codeText={src} scope={scope} />
+      <Playground
+        codeText={src}
+        scope={scope}
+        // collapsableCode
+      />
       <hr />
     </Wrapper>
   );
