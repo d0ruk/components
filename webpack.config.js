@@ -51,6 +51,10 @@ module.exports = (env={}) => {
             }
           }
         },
+        {
+          test: /.svg$/,
+          loader: "svg-inline-loader"
+        }
       ]
     },
     plugins: [].concat(isProd
