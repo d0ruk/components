@@ -42,6 +42,9 @@ module.exports = (env={}) => {
                 "@babel/preset-react"
               ],
               plugins: [
+                ["babel-plugin-styled-components", {
+                  displayName: !isProd,
+                }],
                 // "@babel/plugin-transform-runtime",
                 "@babel/plugin-proposal-object-rest-spread",
               ]
