@@ -12,12 +12,16 @@ export const getScale = (size="sm") => {
 }
 
 export const getRGB = (color="mistyrose") => {
-  const { red, green, blue, alpha } = parseToRgb(color);
-
-  if (alpha) {
-    return `rgba(${red}, ${green}, ${blue},  ${alpha})`;
-  } else {
-    return `rgb(${red}, ${green}, ${blue})`;
+  try {
+    const { red, green, blue, alpha } = parseToRgb(color);
+    
+    if (alpha) {
+      return `rgba(${red}, ${green}, ${blue},  ${alpha})`;
+    } else {
+      return `rgb(${red}, ${green}, ${blue})`;
+    }
+  } catch(_) {
+    return "rgb(255,228,225)";
   }
 }
 
