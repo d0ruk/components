@@ -20,7 +20,7 @@
   width="4"
   height="7"
 >
-  <animateTransform 
+  <animateTransform
     attributeType="xml"
     attributeName="transform"
     type="scale"

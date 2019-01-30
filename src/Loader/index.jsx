@@ -32,18 +32,13 @@ const Wrapper = styled.div`
 `;
 
 const Loader = ({ fullscreen, ...rest }) => {
-
   if (fullscreen) {
-    const background = typeof fullscreen === "string"
-      ? fullscreen
-      : fullscreen.bg;
+    const background =
+      typeof fullscreen === "string" ? fullscreen : fullscreen.bg;
 
     return (
       <Wrapper bg={background}>
-        <SVG
-          size={rest.size || "xl"}
-          {...rest}
-        />
+        <SVG size={rest.size || "xl"} {...rest} />
       </Wrapper>
     );
   }
@@ -52,10 +47,10 @@ const Loader = ({ fullscreen, ...rest }) => {
 };
 
 Loader.propTypes = {
-  fullscreen : oneOfType([
+  fullscreen: oneOfType([
     string,
-    shape({ bg: shape({ color: string, tint: number })})
-  ]),
-}
+    shape({ bg: shape({ color: string, tint: number }) })
+  ])
+};
 Loader.displayName = "Loader";
 export default Loader;

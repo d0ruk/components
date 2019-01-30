@@ -3,20 +3,23 @@ const { name } = require("./package.json");
 const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
-module.exports = (env={}) => {
+const OUT = resolve(__dirname, "dist");
+
+module.exports = (env = {}) => {
   const isProd = env.prod;
-  const entry = { index: "./src/index" };
-  const output =  {
+  const entry = { [name]: "./src/index" };
+  const output = {
     filename: "[name].js",
-    path: resolve(__dirname, "build")
+    path: OUT,
   };
 
   if (!isProd) {
     entry["play"] = "./playground";
   } else {
-    output["library"] = name,
-    output["libraryTarget"] = "commonjs2"
+    output["library"] = name;
+    output["libraryTarget"] = "commonjs2";
   }
 
   return {
@@ -34,43 +37,51 @@ module.exports = (env={}) => {
             options: {
               cacheDirectory: true,
               presets: [
-                ["@babel/preset-env", {
-                  "targets": {
-                    "browsers": "last 3 versions"
-                  }
-                }],
-                "@babel/preset-react"
+                [
+                  "@babel/preset-env",
+                  {
+                    targets: {
+                      browsers: "last 3 versions",
+                    },
+                  },
+                ],
+                "@babel/preset-react",
               ],
               plugins: [
-                ["babel-plugin-styled-components", {
-                  displayName: !isProd,
-                }],
-                // "@babel/plugin-transform-runtime",
+                [
+                  "babel-plugin-styled-components",
+                  {
+                    displayName: !isProd,
+                  },
+                ],
                 "@babel/plugin-proposal-object-rest-spread",
-              ]
-            }
-          }
+              ],
+            },
+          },
         },
         {
           test: /.svg$/,
-          loader: "svg-inline-loader"
-        }
-      ]
+          loader: "svg-inline-loader",
+        },
+      ],
     },
-    plugins: [].concat(isProd
-      ? [new CleanWebpackPlugin([resolve(__dirname, "build")])]
-      : [new HtmlWebpackPlugin({
-        template: "./index.html",
-        title: "components playground",
-        chunks: ["play"]
-      }),
-      new webpack.HotModuleReplacementPlugin()]
+    plugins: [].concat(
+      isProd
+        ? [new CleanWebpackPlugin([OUT]), new BundleAnalyzerPlugin()]
+        : [
+            new HtmlWebpackPlugin({
+              template: "./index.html",
+              title: "components playground",
+              chunks: ["play"],
+            }),
+            new webpack.HotModuleReplacementPlugin(),
+          ]
     ),
     resolve: {
       extensions: [".js", ".json", ".jsx"],
       alias: {
-        "~": resolve(__dirname, "src")
-      }
+        "~": resolve(__dirname, "src"),
+      },
     },
     devtool: isProd ? "hidden-source-map" : "source-map",
     devServer: {
@@ -91,5 +102,12 @@ module.exports = (env={}) => {
       version: false,
       warnings: true,
     },
-  }
-}
+    externals: {
+      "styled-components": {
+        commonjs2: "styled-components",
+        umd: "styled-components",
+      },
+    },
+    target: "web",
+  };
+};

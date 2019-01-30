@@ -4,31 +4,40 @@ import { oneOf, string } from "prop-types";
 
 import { SIZES, getScale } from "~/util";
 
-const VARIANTS = [{
-  name: "spin1",
-  viewBox: "0 0 40 40"
-}, {
-  name: "spin2",
-  viewBox: "0 0 50 50"
-}, {
-  name: "spin3",
-  viewBox: "0 0 50 50"
-}, {
-  name: "rect1",
-  viewBox: "0 0 24 24"
-}, {
-  name: "rect2",
-  viewBox: "0 0 24 30"
-}, {
-  name: "rect3",
-  viewBox: "0 0 24 30"
-}, {
-  name: "rect4",
-  viewBox: "0 0 24 30"
-}, {
-  name: "rect5",
-  viewBox: "0 0 24 30"
-}];
+const VARIANTS = [
+  {
+    name: "spin1",
+    viewBox: "0 0 40 40"
+  },
+  {
+    name: "spin2",
+    viewBox: "0 0 50 50"
+  },
+  {
+    name: "spin3",
+    viewBox: "0 0 50 50"
+  },
+  {
+    name: "rect1",
+    viewBox: "0 0 24 24"
+  },
+  {
+    name: "rect2",
+    viewBox: "0 0 24 30"
+  },
+  {
+    name: "rect3",
+    viewBox: "0 0 24 30"
+  },
+  {
+    name: "rect4",
+    viewBox: "0 0 24 30"
+  },
+  {
+    name: "rect5",
+    viewBox: "0 0 24 30"
+  }
+];
 
 const Component = styled.svg`
   width: ${({ size }) => getScale(size)};
@@ -62,7 +71,7 @@ SVG.propTypes = {
   fill: string,
   stroke: string,
   size: oneOf(SIZES),
-  variant: oneOf(VARIANTS.map(({ name }) => name)),
+  variant: oneOf(VARIANTS.map(({ name }) => name))
 };
 
 export default SVG;
