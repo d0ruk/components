@@ -49,8 +49,8 @@ const Loader = ({ fullscreen, ...rest }) => {
 Loader.propTypes = {
   fullscreen: oneOfType([
     string,
-    shape({ bg: shape({ color: string, tint: number }) })
-  ])
+    shape({ bg: oneOfType([string, shape({ color: string, tint: number })]) }),
+  ]),
 };
 Loader.displayName = "Loader";
 export default Loader;
