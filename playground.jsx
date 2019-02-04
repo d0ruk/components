@@ -1,14 +1,13 @@
 /* eslint-disable react/prop-types */
-
 import React, { Fragment } from "react";
 import Playground from "component-playground";
 import ReactDOM from "react-dom";
-import styled, { injectGlobal } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { normalize, lighten, complement } from "polished";
 
 import * as components from "./src";
 
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
   ${normalize()}
 
   :root {
@@ -34,20 +33,24 @@ injectGlobal`
   }
 `;
 
-const scope = { React, ...components }
-const examples = Object.entries(components)
-  .map(([ name, module ]) => {
-    return {
-      name,
-      // docClass: module,
-      src: require(`raw-loader!./examples/${name}`),
-      scope,
-    }
-  });
+const scope = { React, ...components };
+const examples = Object.entries(components).map(([name, module]) => {
+  return {
+    name,
+    // docClass: module,
+    src: require(`raw-loader!./examples/${name}`),
+    scope,
+  };
+});
 
 class Index extends React.Component {
   render() {
-    return <Fragment>{examples.map(makePlayground)}</Fragment>;
+    return (
+      <Fragment>
+        <GlobalStyle />
+        {examples.map(makePlayground)}
+      </Fragment>
+    );
   }
 }
 
