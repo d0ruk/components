@@ -7,26 +7,27 @@ const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const OUT = resolve(__dirname, "dist");
 
-module.exports = (env = {}) => {
-  const isProd = env.prod;
-  const entry = { [name]: "./src/index" };
-  const output = {
-    filename: "[name].js",
-    path: OUT,
-  };
-
-  if (!isProd) {
-    entry["play"] = "./playground";
-  } else {
-    output["library"] = name;
-    output["libraryTarget"] = "commonjs2";
-  }
+module.exports = ({ isProd } = {}) => {
+  const entry = { index: "./src/index" };
+  if (!isProd) entry["play"] = "./playground";
 
   return {
     context: __dirname,
     mode: isProd ? "production" : "development",
     entry,
-    output,
+    output: {
+      filename: "[name].js",
+      path: OUT,
+      library: {
+        commonjs: name,
+        amd: "_components",
+        root: "_components",
+      },
+      libraryExport: "",
+      libraryTarget: "umd",
+      umdNamedDefine: true,
+      globalObject: "(typeof self != 'undefined' ? self : this)",
+    },
     module: {
       rules: [
         {
@@ -52,9 +53,12 @@ module.exports = (env = {}) => {
                   "babel-plugin-styled-components",
                   {
                     displayName: !isProd,
+                    ssr: false,
+                    pure: true,
                   },
                 ],
                 "@babel/plugin-proposal-object-rest-spread",
+                "@babel/plugin-transform-runtime",
               ],
             },
           },
@@ -67,7 +71,14 @@ module.exports = (env = {}) => {
     },
     plugins: [].concat(
       isProd
-        ? [new CleanWebpackPlugin([OUT]), new BundleAnalyzerPlugin()]
+        ? [
+            new CleanWebpackPlugin([OUT]),
+            new BundleAnalyzerPlugin({
+              openAnalyzer: false,
+              analyzerMode: "static",
+              reportFilename: "bundle.html",
+            }),
+          ]
         : [
             new HtmlWebpackPlugin({
               template: "./index.html",
@@ -102,12 +113,21 @@ module.exports = (env = {}) => {
       version: false,
       warnings: true,
     },
-    externals: {
-      "styled-components": {
-        commonjs2: "styled-components",
-        umd: "styled-components",
-      },
-    },
-    target: "web",
+    externals: isProd
+      ? {
+          react: {
+            commonjs: "react",
+            commonjs2: "react",
+            amd: "react",
+            root: "React",
+          },
+          "styled-components": {
+            commonjs: "styled-components",
+            commonjs2: "styled-components",
+            amd: "styled",
+            root: "styled",
+          },
+        }
+      : {},
   };
 };
