@@ -46,3 +46,5 @@ fill|string|fill of the SVG elements| -
 stroke|string|stroke of the SVG elements| -
 size|string|one of; xs, sm, md, lg, xl|sm
 variant|string|one of: spin1, spin2, spin3, rect1, rect2, rect3, rect4, rect5|spin1
+
+### When loaded via \<script\> tag, lib is available as *_components*; i.e. *window._components.Button*

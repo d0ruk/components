@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-
 import { string, node } from "prop-types";
 
 const Component = styled.button`

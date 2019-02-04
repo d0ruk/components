@@ -2,11 +2,13 @@
   "name": "@doruk/components",
   "version": "1.7.0",
   "description": ":sun_with_face:",
-  "main": "build/index.js",
+  "main": "dist",
+  "module": "src",
   "scripts": {
-    "build": "webpack --env.prod",
-    "dev": "webpack-dev-server",
-    "prepublishOnly": "npm run build"
+    "start": "webpack-dev-server",
+    "build": "webpack --env.isProd",
+    "prepublishOnly": "npm run build",
+    "test": "eslint src"
   },
   "repository": {
     "type": "git",
@@ -56,5 +58,12 @@
   },
   "resolutions": {
     "terser": "3.14.1"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
   }
 }
