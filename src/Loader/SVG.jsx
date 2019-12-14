@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { oneOf, string } from "prop-types";
 
-import { SIZES, getScale } from "~/util";
+import { SIZES, getScale } from "../util";
 
 const VARIANTS = [
   {

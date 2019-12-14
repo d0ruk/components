@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const OUT = resolve(__dirname, "dist");
+const SRC = resolve(__dirname, "src");
 
 module.exports = ({ isProd } = {}) => {
   const entry = { index: "./src/index" };
@@ -32,7 +33,7 @@ module.exports = ({ isProd } = {}) => {
       rules: [
         {
           test: /.jsx?$/,
-          include: [resolve(__dirname, "src"), /playground/],
+          include: [SRC, /playground/],
           use: {
             loader: "babel-loader",
             options: {
@@ -90,9 +91,6 @@ module.exports = ({ isProd } = {}) => {
     ),
     resolve: {
       extensions: [".js", ".json", ".jsx"],
-      alias: {
-        "~": resolve(__dirname, "src"),
-      },
     },
     devtool: isProd ? "hidden-source-map" : "source-map",
     devServer: {

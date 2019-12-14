@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { oneOfType, string, shape, number } from "prop-types";
 
-import { getBgColor } from "~/util";
+import { getBgColor } from "../util";
 import SVG from "./SVG";
 
 const Wrapper = styled.div`
