@@ -1,0 +1,16 @@
+<Wrapper flex>
+  <Ol>
+    <Li>a</Li>
+    <Li>b</Li>
+    <Li>c</Li>
+  </Ol>
+  <Ol>
+    <Li value="4">d</Li>
+    <Span><I>lorem ipsum</I></Span>
+    <Li>e</Li>
+    <Ol>
+      <Li value="6">f</Li>
+      <Li>g</Li>
+    </Ol>
+  </Ol>
+</Wrapper>

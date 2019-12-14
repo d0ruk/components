@@ -1,15 +1,14 @@
 /* eslint-disable react/prop-types */
+
 import React, { Fragment } from "react";
 import Playground from "component-playground";
 import ReactDOM from "react-dom";
 import styled, { createGlobalStyle } from "styled-components";
-import { normalize, lighten, complement } from "polished";
+import { lighten, complement } from "polished";
 
 import * as components from "./src";
 
 const GlobalStyle = createGlobalStyle`
-  ${normalize()}
-
   :root {
     --primary: rgb(23, 121, 186);
     --secondary: rgb(118, 118, 118);
@@ -33,20 +32,37 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const scope = { React, ...components };
-const examples = Object.entries(components).map(([name, module]) => {
-  return {
-    name,
-    // docClass: module,
-    src: require(`raw-loader!./examples/${name}`),
-    scope,
-  };
-});
+const Wrapper = styled.div`
+  display: ${p => p.flex ? "flex" : "initial"};
+
+  > * {
+    margin: 1rem;
+  }
+`;
+
+const scope = { React, ...components, Wrapper };
+const examples = Object.entries(components)
+  .map(([name, module]) => {
+    let src;
+
+    try {
+      src = require(`raw-loader?esModule=false!./examples/${name}`);
+    } catch(e) {
+      return;
+    }
+    return {
+      name,
+      docClass: module,
+      src,
+      scope,
+    };
+  }).filter(Boolean);
 
 class Index extends React.Component {
   render() {
     return (
       <Fragment>
+        <components.Normalize />
         <GlobalStyle />
         {examples.map(makePlayground)}
       </Fragment>

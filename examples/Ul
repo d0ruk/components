@@ -1,0 +1,15 @@
+<Wrapper flex>
+  <Ul style={{ listStyleType: "circle" }}>
+    <Li>a</Li>
+    <Li>b</Li>
+    <Li>c</Li>
+  </Ul>
+  <Ul>
+    <Li>d</Li>
+    <P><B>lorem ipsum</B></P>
+    <Ul>
+      <Li>e</Li>
+      <Li>f</Li>
+    </Ul>
+  </Ul>
+</Wrapper>
