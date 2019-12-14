@@ -1,17 +1,17 @@
 ```js
 import { Button, Loader } from "@doruk/components"
 
-export const aButton = () => (
+const aButton = () => (
   <Button accent="success">
     Hello world!
   </Button>
 );
 
-export const aLoader = () => (
+const aLoader = () => (
   <Loader size="md" fill="rebeccapurple" />
 );
 
-export const overlayedLoader = () => (
+const overlayedLoader = () => (
   React.createPortal(
     <Loader
       variant="rect5"
@@ -23,7 +23,7 @@ export const overlayedLoader = () => (
   )
 );
 
-export const yetAnotherLoader = () => (
+const yetAnotherLoader = () => (
   <Loader
     size="xs"
     fullscreen="rgba(0,0,0,.6)"
@@ -47,4 +47,42 @@ stroke|string|stroke of the SVG elements| -
 size|string|one of; xs, sm, md, lg, xl|sm
 variant|string|one of: spin1, spin2, spin3, rect1, rect2, rect3, rect4, rect5|spin1
 
-### When loaded via \<script\> tag, lib is available as *_components*; i.e. *window._components.Button*
+## rest
+
+Ul Li Main P Span Nav Div Section H1 H2 H3 H4 H5 H6 A Article Aside Audio B Br Caption Code Footer Header Hr I Iframe Img Input Li Main Ol Option P Picture Pre Progress Select Source Table Tbody Td Textarea Tfoot Th Thead Tr U Ul Video
+
+## CSS reset & normalize
+
+```js
+import { Normalize, Reset } from "@doruk/components"
+
+const App = () => (
+  <Main>
+    <Reset />
+    <Normalize />
+  </Main>
+);
+```
+
+or
+
+```js
+import { normalize, reset } from "@doruk/components"
+
+const GlobalStyle = styled.createGlobalStyle`
+  ${reset}
+  ${normalize}
+`;
+
+const App = () => (
+  <Section>
+    <GlobalStyle />
+  </Section>
+);
+```
+
+### When loaded via \<script\> tag, the library is available as *_components*; i.e. *window._components.Button*
+
+```html
+<script src="https://unpkg.com/@doruk/components"></script>
+```

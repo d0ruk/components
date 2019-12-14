@@ -57,10 +57,9 @@
     "react": "^16",
     "styled-components": ">= 4"
   },
-  "files": [
-    "dist",
-    "src"
-  ],
+  "np": {
+    "contents": "dist"
+  },
   "publishConfig": {
     "access": "public"
   }
