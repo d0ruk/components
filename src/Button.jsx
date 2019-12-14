@@ -41,7 +41,7 @@ const Button = ({ htmlType, children, ...rest }) => {
 Button.displayName = "Button";
 Button.propTypes = {
   htmlType: string,
-  children: node
+  children: node,
 };
 
 export default Button;
