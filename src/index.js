@@ -1,6 +1,9 @@
 import "css.escape";
 import styled from "styled-components";
 
+export { Normalize, normalize } from "styled-normalize";
+export { Reset, reset } from "styled-reset";
+
 export { default as Button } from "./Button";
 export { default as Loader } from "./Loader";
 
