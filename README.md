@@ -54,7 +54,7 @@ Ul Li Main P Span Nav Div Section H1 H2 H3 H4 H5 H6 A Article Aside Audio B Br C
 ## CSS reset & normalize
 
 ```js
-import { Normalize, Reset } from "@doruk/components"
+import { Normalize, Reset, Main } from "@doruk/components"
 
 const App = () => (
   <Main>
@@ -67,7 +67,7 @@ const App = () => (
 or
 
 ```js
-import { normalize, reset } from "@doruk/components"
+import { normalize, reset, Section } from "@doruk/components"
 
 const GlobalStyle = styled.createGlobalStyle`
   ${reset}
@@ -81,8 +81,10 @@ const App = () => (
 );
 ```
 
-### When loaded via \<script\> tag, the library is available as *_components*; i.e. *window._components.Button*
+## Load from CDN
 
 ```html
 <script src="https://unpkg.com/@doruk/components"></script>
 ```
+
+Then the library is available as *_components*; i.e. *window._components.Button*
