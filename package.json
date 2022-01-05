@@ -1,19 +1,26 @@
 {
   "name": "@doruk/components",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "description": ":sun_with_face:",
-  "main": "dist",
+  "main": "dist/index.js",
+  "module": "src/index.js",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack --env.isProd",
+    "start": "webpack serve",
+    "build": "webpack --env isProd",
     "prepack": "npm run build",
     "test": "eslint src"
   },
+  "browserslist": [
+    "last 3 versions"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/d0ruk/components.git"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "styled-components"
+  ],
   "author": "Doruk Kutlu",
   "license": "MIT",
   "bugs": {
@@ -23,6 +30,7 @@
   "dependencies": {
     "@babel/runtime": "^7.2.0",
     "css.escape": "^1.5.1",
+    "polished": "^4.1.3",
     "prop-types": "^15.6.1",
     "styled-normalize": "^8.0.6",
     "styled-reset": "^4.0.8"
@@ -35,27 +43,24 @@
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
-    "babel-plugin-styled-components": "^1.9.4",
-    "clean-webpack-plugin": "^1.0.0",
+    "babel-plugin-styled-components": "^2.0.2",
     "component-playground": "^3.2.1",
-    "eslint": "^5.10.0",
+    "eslint": "^8.4.1",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "html-webpack-plugin": "^3.0.4",
-    "polished": "^2.3.3",
-    "raw-loader": "^4.0.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.6.3",
-    "styled-components": "^4.4.0",
-    "svg-inline-loader": "^0.8.0",
-    "webpack": "^4.27.1",
-    "webpack-bundle-analyzer": "^3.0.3",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "html-webpack-plugin": "^5.5.0",
+    "raw-loader": "^4.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.3",
+    "webpack": "^5.65.0",
+    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.1"
   },
   "peerDependencies": {
-    "react": "^16",
-    "styled-components": ">= 4"
+    "react": ">16",
+    "styled-components": ">= 5"
   },
   "np": {
     "contents": "dist"

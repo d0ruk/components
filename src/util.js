@@ -18,7 +18,7 @@ export const getRGB = (color = "mistyrose") => {
     if (alpha) return `rgba(${red}, ${green}, ${blue},  ${alpha})`;
 
     return `rgb(${red}, ${green}, ${blue})`;
-  } catch (_) {
+  } catch {
     return "rgb(255,228,225)";
   }
 };

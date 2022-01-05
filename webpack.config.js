@@ -1,16 +1,13 @@
 const { resolve } = require("path");
-const { name } = require("./package.json");
-const webpack = require("webpack");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
-const OUT = resolve(__dirname, "dist");
 const SRC = resolve(__dirname, "src");
+const EXAMPLES = resolve(__dirname, "examples");
 
 module.exports = ({ isProd } = {}) => {
-  const entry = { index: "./src/index" };
-  if (!isProd) entry["play"] = "./playground";
+  const entry = { index: resolve(SRC, "index.js") };
+  if (!isProd) entry["play"] = "./playground.jsx";
 
   return {
     context: __dirname,
@@ -18,17 +15,13 @@ module.exports = ({ isProd } = {}) => {
     entry,
     output: {
       filename: "[name].js",
-      path: OUT,
       library: {
-        commonjs: name,
-        amd: "_components",
-        root: "_components",
+        type: "umd",
+        name: "_components",
       },
-      libraryExport: "",
-      libraryTarget: "umd",
-      umdNamedDefine: true,
-      globalObject: "(typeof self != 'undefined' ? self : this)",
+      clean: true,
     },
+    target: "browserslist",
     module: {
       rules: [
         {
@@ -38,17 +31,7 @@ module.exports = ({ isProd } = {}) => {
             loader: "babel-loader",
             options: {
               cacheDirectory: true,
-              presets: [
-                [
-                  "@babel/preset-env",
-                  {
-                    targets: {
-                      browsers: "last 3 versions",
-                    },
-                  },
-                ],
-                "@babel/preset-react",
-              ],
+              presets: ["@babel/preset-env", "@babel/preset-react"],
               plugins: [
                 [
                   "babel-plugin-styled-components",
@@ -66,14 +49,23 @@ module.exports = ({ isProd } = {}) => {
         },
         {
           test: /.svg$/,
-          loader: "svg-inline-loader",
+          type: "asset/source",
+        },
+        {
+          test: /.sample?$/,
+          include: [EXAMPLES],
+          use: {
+            loader: "raw-loader",
+            options: {
+              esModule: false,
+            },
+          },
         },
       ],
     },
     plugins: [].concat(
       isProd
         ? [
-            new CleanWebpackPlugin([OUT]),
             new BundleAnalyzerPlugin({
               openAnalyzer: false,
               analyzerMode: "static",
@@ -86,19 +78,15 @@ module.exports = ({ isProd } = {}) => {
               title: "components playground",
               chunks: ["play"],
             }),
-            new webpack.HotModuleReplacementPlugin(),
           ]
     ),
     resolve: {
       extensions: [".js", ".json", ".jsx"],
     },
-    devtool: isProd ? "hidden-source-map" : "source-map",
+    devtool: isProd ? "hidden-source-map" : "inline-source-map",
     devServer: {
-      hotOnly: true,
       compress: true,
       historyApiFallback: true,
-      stats: { modules: false },
-      overlay: true,
     },
     stats: {
       assets: true,

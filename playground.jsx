@@ -33,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Wrapper = styled.div`
-  display: ${p => p.flex ? "flex" : "initial"};
+  display: ${p => (p.flex ? "flex" : "initial")};
 
   > * {
     margin: 1rem;
@@ -46,17 +46,19 @@ const examples = Object.entries(components)
     let src;
 
     try {
-      src = require(`raw-loader?esModule=false!./examples/${name}`);
-    } catch(e) {
+      src = require(`./examples/${name}.sample`);
+    } catch (e) {
       return;
     }
+
     return {
       name,
       docClass: module,
       src,
       scope,
     };
-  }).filter(Boolean);
+  })
+  .filter(Boolean);
 
 class Index extends React.Component {
   render() {
@@ -72,7 +74,7 @@ class Index extends React.Component {
 
 ReactDOM.render(<Index />, document.getElementById("root"));
 
-if (module.hot) module.hot.accept();
+if (import.meta.webpackHot) import.meta.webpackHot.accept();
 
 function makePlayground({ src, scope, name }) {
   const Wrapper = styled.div`
