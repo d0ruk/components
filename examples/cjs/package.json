@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "watch": "webpack w",
+    "build": "webpack b"
+  }
+}

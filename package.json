@@ -1,6 +1,6 @@
 {
   "name": "@doruk/components",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": ":sun_with_face:",
   "main": "dist/index.js",
   "module": "src/index.js",
