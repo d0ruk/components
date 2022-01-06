@@ -1,7 +1,13 @@
 {
-  "parser": "babel-eslint",
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
-  "plugins": ["react", "jsx-a11y"],
+  "parser": "@babel/eslint-parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": [
+    "react",
+    "jsx-a11y"
+  ],
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {
@@ -22,8 +28,14 @@
     }
   },
   "rules": {
-    "quotes": [2, "double"],
-    "arrow-parens": [2, "as-needed"],
+    "quotes": [
+      2,
+      "double"
+    ],
+    "arrow-parens": [
+      2,
+      "as-needed"
+    ],
     "max-len": [
       2,
       80,
@@ -35,7 +47,13 @@
         "ignoreRegExpLiterals": true
       }
     ],
-    "comma-dangle": ["error", "always-multiline"],
-    "eol-last": ["error", "always"]
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "eol-last": [
+      "error",
+      "always"
+    ]
   }
 }
