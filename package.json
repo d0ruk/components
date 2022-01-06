@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "module": "src/index.js",
   "scripts": {
-    "start": "webpack serve",
-    "build": "webpack --env isProd",
+    "start": "webpack serve --node-env development",
+    "build": "webpack --node-env production",
     "prepack": "npm run build",
     "test": "eslint --ext .js,.jsx src"
   },
@@ -61,9 +61,6 @@
   "peerDependencies": {
     "react": ">16",
     "styled-components": ">= 5"
-  },
-  "np": {
-    "contents": "dist"
   },
   "publishConfig": {
     "access": "public"

@@ -5,13 +5,13 @@ const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const SRC = resolve(__dirname, "src");
 const EXAMPLES = resolve(__dirname, "examples");
 
-module.exports = ({ isProd } = {}) => {
+module.exports = () => {
+  const isProd = process.env.NODE_ENV === "production";
   const entry = { index: resolve(SRC, "index.js") };
   if (!isProd) entry["play"] = "./playground.jsx";
 
   return {
     context: __dirname,
-    mode: isProd ? "production" : "development",
     entry,
     output: {
       filename: "[name].js",
