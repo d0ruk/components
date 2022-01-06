@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { oneOfType, string, shape, number } from "prop-types";
 
-import { getBgColor } from "../util";
-import SVG from "./SVG";
+import { getBgColor } from "../util.js";
+import SVG from "./SVG.jsx";
 
 const Wrapper = styled.div`
   position: fixed;
