@@ -3,12 +3,12 @@ import { modularScale, parseToRgb, transparentize } from "polished";
 export const SIZES = ["xs", "sm", "md", "lg", "xl"];
 
 export const getScale = (size = "sm") => {
-  const BASE = "1px";
   if (!SIZES.includes(size)) size = "sm";
 
   const idx = SIZES.indexOf(size);
   const step = idx === -1 ? 1 : idx * 1.6 + 1;
-  return modularScale(step, BASE);
+
+  return modularScale(step);
 };
 
 export const getRGB = (color = "mistyrose") => {
