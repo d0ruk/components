@@ -41,12 +41,7 @@ module.exports = () => {
         {
           test: /.sample?$/,
           include: [EXAMPLES],
-          use: {
-            loader: "raw-loader",
-            options: {
-              esModule: false,
-            },
-          },
+          type: "asset/source",
         },
       ],
     },
