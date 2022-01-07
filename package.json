@@ -3,7 +3,6 @@
   "version": "3.1.0",
   "description": ":sun_with_face:",
   "main": "dist/index.js",
-  "module": "src/index.js",
   "scripts": {
     "start": "webpack serve --node-env development",
     "build": "webpack --node-env production",
